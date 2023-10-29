@@ -1,20 +1,18 @@
 #include <Stepper.h>
+#include <AccelStepper.h>
 #include <ArduinoJson.h>
-// wifi part 
 #include <WiFi.h>
-// const char* WIFI_SSID = "POCO"; 
-// const char* WIFI_PASS = "jhonier1234";
-// const char* WIFI_SSID = "Vides Preciado"; 
-// const char* WIFI_PASS = "familiavp";
-const char* WIFI_SSID = "AlejandroS20"; 
-const char* WIFI_PASS = "AlejandroS20";
+// wifi constantes  
+const char* WIFI_SSID = "nombre_wifi"; 
+const char* WIFI_PASS = "password";
 
+// Configuración servidor en el puerto 80
 WiFiServer server(80); 
 String peticion;
 
 
+// Configuración de pines en ESP32
 const int LED = 23; 
-
 
 #define stp3 26
 #define dir3 25
@@ -26,6 +24,7 @@ const int LED = 23;
 #define m1 14
 #define m2 27
 
+// Configuración de pines de otro micro
 // #define stp3 17  
 // #define dir3 16
 // #define stp2 4
@@ -36,6 +35,7 @@ const int LED = 23;
 // #define m1 18
 // #define m2 5
 
+// 
 int Micros = 32; 
 int Estado_1 = 0;
 int Estado_2 = 0;
@@ -54,7 +54,6 @@ float Pos3 = 0;
 float microConst = 1;
 
 int Punto = 1;
-#include <AccelStepper.h>
 
 //Creacion de los motores como objetos
 AccelStepper Brazo_1(1,stp1,dir1);
@@ -289,6 +288,7 @@ void setup() {
   Serial.print("Conectando a "); 
   Serial.println(WIFI_SSID); 
 
+  // Conexión a la red wifi 
   WiFi.begin(WIFI_SSID, WIFI_PASS); 
   while(WiFi.status() != WL_CONNECTED){
     
